@@ -7,7 +7,7 @@ from etl import read_csv, read_db, transform_csv, transform_db, merge, load, sto
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
-    'start_date': datetime(2023, 10, 3),  # Update the start date to today or an appropriate date
+    'start_date': datetime(2023, 10, 8),  # Update the start date to today or an appropriate date
     'email': ['airflow@example.com'],
     'email_on_failure': False,
     'email_on_retry': False,
@@ -48,13 +48,13 @@ with DAG(
     )
 
     load = PythonOperator(
-    task_id='load',
-    python_callable=load,
+        task_id='load',
+        python_callable=load,
     )
 
     store = PythonOperator(
-    task_id='store',
-    python_callable=store,
+        task_id='store',
+        python_callable=store,
     )
     
     read_db >> transform_db >> merge

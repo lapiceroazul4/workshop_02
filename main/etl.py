@@ -10,7 +10,7 @@ from drive import subir_archivo
 
 def read_csv():
     #Reading csv file
-    spotify_df = pd.read_csv("spotify_dataset.csv")
+    spotify_df = pd.read_csv("/home/spider/etl/workshop_02/main/spotify_dataset.csv")
     logging.info("csv read succesfully")
     return spotify_df.to_json(orient='records')
 
@@ -82,9 +82,9 @@ def merge(**kwargs):
     grammys_df = pd.json_normalize(data=json_data)
 
     df = spotify_df.merge(grammys_df, how='left', left_on='track_name', right_on='nominee')
-    df = organizing_columns(df)
+    df2 = organizing_columns(df)
     logging.info( f"data is ready to deploy")
-    return df.to_json(orient='records')
+    return df2.to_json(orient='records')
     
 
 def load(**kwargs):
@@ -99,7 +99,7 @@ def load(**kwargs):
 
     #Cerramos la conexion a la db
     disposing_engine(engine)
-    
+    df.to_csv("data_result.csv", index=False)
     logging.info( f"data is ready to deploy")
     return df.to_json(orient='records')
 
@@ -109,7 +109,6 @@ def store(**kwargs):
     str_data = ti.xcom_pull(task_ids="load")
     json_data = json.loads(str_data)
     df = pd.json_normalize(data=json_data)
-    df.to_csv("data_result.csv")
     
-    subir_archivo("data_result.csv","1RrLEHUgBIefJGlw7jeNAPxdaHSA1hVf-")    
+    subir_archivo("/home/spider/etl/workshop_02/main/data_result.csv","1RrLEHUgBIefJGlw7jeNAPxdaHSA1hVf-")    
     logging.info( f"data has completed the process")

@@ -1,11 +1,10 @@
 import json 
-import pandas as pd
 from sqlalchemy import create_engine, Column, Integer, Float, String, Boolean, Date, Text, ForeignKey, VARCHAR
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 #Leer config desde el JSON
-with open('db_config.json', 'r') as json_file:
+with open('/home/spider/etl/workshop_02/main/db_config.json', 'r') as json_file:
     data = json.load(json_file)
     usuario = data["user"]
     password = data["passwd"]

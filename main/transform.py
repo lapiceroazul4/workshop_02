@@ -189,6 +189,6 @@ def organizing_columns(df):
        'duration_category', 'explicit', 'danceability', 'energy',
        'key', 'loudness', 'mode', 'speechiness', 'acousticness',
        'instrumentalness', 'liveness', 'valence', 'tempo', 'time_signature',
-       'track_genre', 'grammy', 'nominee', 'artist', 'is_nominee']
+       'track_genre', 'grammy', 'nominee', 'is_nominee']
     df = df[columns]
     return df

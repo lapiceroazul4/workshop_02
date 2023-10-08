@@ -263,19 +263,19 @@ $RECYCLE.BIN/
 #Adding some adicional information
 
 main/spotify_dataset.csv
-main/spotify_dataser.csv:Zone.Identifier
+main/spotify_dataset.csv:Zone.Identifier
 main/the_grammy_awards.csv
 main/the_grammy_awards.csv:Zone.Identifier
-main/db.config.json
+main/db_config.json
 main/sending_data.ipynb
 main/settings.yaml
 main/credentials_module.json
 main/data_result.csv
-main/client_secret.json
+main/client_secrets.json
 main/client_secret_928131062424-tr44htic1g2gtr42dsl6ps6ppk088j50.apps.googleusercontent.com.json:Zone.Identifier
 main/__pycache__/
 airflow.cfg
 airflow.db
 webserver_config.py
-.logs
+logs/
 

@@ -2,7 +2,7 @@ from pydrive2.auth import GoogleAuth
 from pydrive2.drive import GoogleDrive
 from pydrive2.files import FileNotUploadedError
 
-directorio_credenciales = 'credentials_module.json'
+directorio_credenciales = '/home/spider/etl/workshop_02/main/credentials_module.json'
 
 # INICIAR SESION
 def login():
@@ -36,3 +36,7 @@ def bajar_archivo_por_id(id_drive,ruta_descarga):
     nombre_archivo = archivo['title']
     archivo.GetContentFile(ruta_descarga + nombre_archivo)
 
+if __name__ == "__main__":
+
+    login()
+    subir_archivo()
