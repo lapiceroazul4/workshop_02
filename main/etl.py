@@ -3,7 +3,7 @@ import logging
 import json
 from  Database import creating_engine, disposing_engine
 from transform import drop_unnamed_column, change_categories, creating_popularity_category, ms_to_min, creating_duration_category
-from transform import no_needed_columns, new_name_columns, drop_null_rows, organizing_columns
+from transform import no_needed_columns, new_name_columns, drop_null_rows, organizing_columns, drop_duplicates, fill_na_after_merge
 from drive import subir_archivo
 
 #SPOTIFY ET
@@ -23,6 +23,8 @@ def transform_csv(**kwargs):
 
     #Drop Column unnamed
     spotify_df = drop_unnamed_column(spotify_df)
+    #Drop Duplicates
+    spotify_df = drop_duplicates(spotify_df)
     #Reducing Categories
     spotify_df = change_categories(spotify_df)
     #Creating Popularity Categorias
@@ -82,9 +84,10 @@ def merge(**kwargs):
     grammys_df = pd.json_normalize(data=json_data)
 
     df = spotify_df.merge(grammys_df, how='left', left_on='track_name', right_on='nominee')
-    df2 = organizing_columns(df)
+    df = organizing_columns(df)
+    df = fill_na_after_merge(df)
     logging.info( f"data is ready to deploy")
-    return df2.to_json(orient='records')
+    return df.to_json(orient='records')
     
 
 def load(**kwargs):

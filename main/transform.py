@@ -132,7 +132,13 @@ def change_categories(df):
     return df
 
 def drop_unnamed_column(df): 
+
     df.drop(columns=["Unnamed: 0"], axis=1, inplace=True)
+    return df
+
+def drop_duplicates(df):
+
+    df = df.drop_duplicates(keep='first')
     return df
 
 def creating_popularity_category(df):
@@ -191,4 +197,8 @@ def organizing_columns(df):
        'instrumentalness', 'liveness', 'valence', 'tempo', 'time_signature',
        'track_genre', 'grammy', 'nominee', 'is_nominee']
     df = df[columns]
+    return df
+
+def fill_na_after_merge(df):
+    df.fillna({'is_nominee':0}, inplace=True)
     return df
