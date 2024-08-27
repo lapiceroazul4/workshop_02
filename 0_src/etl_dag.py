@@ -1,6 +1,6 @@
-from datetime import timedelta
 from airflow import DAG
 from airflow.operators.python import PythonOperator
+from datetime import timedelta
 from datetime import datetime
 from etl import read_csv, read_db, transform_csv, transform_db, merge, load, store
 
